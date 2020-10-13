@@ -62,14 +62,13 @@ function stringToPermutation(string) {
   setPermutationDisplay(permutation);
 
   const arr = [];
-
-  for (let i = 0; i <= permutation.length; i++) {
+  //
+  for (let i = 0; i < permutation.length; i++) {
     const char = permutation[i];
     if (mapping[char] !== undefined) {
       arr.push(mapping[char]);
     }
   }
-  console.log(arr);
   return arr;
 }
 
@@ -80,9 +79,9 @@ function setPermutationDisplay(string) {
 function drawDiagram(array) {
   const grid = fillGrid(array);
   console.log(grid);
+  makeHTMLofGrid(grid)
   // make HTML representation of the grid
-  document.getElementById('diagram').innerHTML = "Drawing diagram, be here soon";
-  return 0;
+  document.getElementById('diagram').innerHTML = makeHTMLofGrid(grid)
 }
 
 // make an n x n array of arrays
@@ -110,10 +109,34 @@ function fillGrid(array) {
     for (let j = 0; j < size; j++) {
       const box = row[j];
       const compareTo = array[j];
-      if (i < compareTo) {
+      // superimpose Lehr diagram
+      if (i < compareTo - 1 && array[i] <= compareTo + 1) {
         grid[i][j] = 1;
+      } 
+      else if (i === compareTo - 1) {
+        grid[i][j] = 2;
       }
     }
   }
   return grid;
+}
+
+function makeHTMLofGrid(grid) {
+  let html = '';
+  grid.forEach(row => {
+    html += row.map(value => makeBox(value)).join('');
+  })
+  console.log(html);
+  return html;
+}
+
+function makeBox(value) {
+  let color = "grey";
+  if (value === 2) {
+    color = "black";
+  }
+  if (value === 1) {
+    color = "red";
+  }
+  return `<div class="${color} box"></div>`
 }
