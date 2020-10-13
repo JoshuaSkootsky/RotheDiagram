@@ -1,4 +1,10 @@
 
+body {
+  margin-left: 2em;
+  padding: 1em;
+}
+
+
 .flexColumn {
   display: flex;
   flex-direction: column;
@@ -9,6 +15,7 @@
 }
 
 .rowName {
+  /* This centers the text */
   display: flex;
   align-items: center;
   justify-content: center;
