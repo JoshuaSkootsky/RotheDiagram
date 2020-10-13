@@ -10,6 +10,7 @@ function rInputGetter() {
 
 function stringToPermutation(string) {
   const mapping = {
+    0: 0,
     1: 1,
     2: 2,
     3: 3,
@@ -79,9 +80,8 @@ function setPermutationDisplay(string) {
 function drawDiagram(array) {
   const grid = fillGrid(array);
   console.log(grid);
-  makeHTMLofGrid(grid)
   // make HTML representation of the grid
-  document.getElementById('diagram').innerHTML = makeHTMLofGrid(grid)
+  document.getElementById('diagram').innerHTML = makeHTMLofGrid(grid, array)
 }
 
 // make an n x n array of arrays
@@ -99,21 +99,17 @@ function makeGrid(n) {
 
 // given an array, make a roth diagram
 function fillGrid(array) {
-  const size = Math.max(...array);
+  const size = array.length;
   // have the size of the array to diagram
   const grid = makeGrid(size);
-  // fill the array to make a Rothe diagram with the array
-  // as here: http://www.mathe2.uni-bayreuth.de/frib/KERBER/h00/node29.html
+
   for (let i = 0; i < size; i++) {
-    const row = grid[i];
     for (let j = 0; j < size; j++) {
-      const box = row[j];
-      const compareTo = array[j];
-      // superimpose Lehr diagram
-      if (i < compareTo - 1 && array[i] <= compareTo + 1) {
+      // inversion
+      if (array[j] > array[i] && j < i) {
         grid[i][j] = 1;
-      } 
-      else if (i === compareTo - 1) {
+      }
+      if (i === j) {
         grid[i][j] = 2;
       }
     }
@@ -121,11 +117,11 @@ function fillGrid(array) {
   return grid;
 }
 
-function makeHTMLofGrid(grid) {
+function makeHTMLofGrid(grid, array) {
   let boxes = '';
-  grid.forEach(row => {
+  grid.forEach((row, i) => {
     const boxRow = row.map(value => makeBox(value)).join('');
-    boxes += `<div class=flexRow> ${boxRow} </div>`
+    boxes += `<div class="flexRow"> <div class="rowName box"> ${array[i]}</div>${boxRow} </div>`
   })
   return `<div class="flexColumn"> ${boxes} </div>`;
 }
