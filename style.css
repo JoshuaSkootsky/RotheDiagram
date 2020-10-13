@@ -1,17 +1,27 @@
 
-.parent {
-  width: 100%;
-  display: grid;
-  grid-auto-rows: auto;
-  grid-auto-columns: auto;
-  grid-row-gap: 1em;
-  grid-column-gap: 1em;
+.flexColumn {
+  display: flex;
+  flex-direction: column;
 }
 
+.flexRow {
+  display: flex;
+}
 
 .box {
-  display: flex;
   width: 100px;
   height: 100px;
   border: 2px solid rgba(0, 0, 0, 0.829);
+}
+
+.grey {
+  background-color: grey;
+}
+
+.red {
+  background-color: red;
+}
+
+.black {
+  background-color: black;
 }

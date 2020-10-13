@@ -122,12 +122,12 @@ function fillGrid(array) {
 }
 
 function makeHTMLofGrid(grid) {
-  let html = '';
+  let boxes = '';
   grid.forEach(row => {
-    html += row.map(value => makeBox(value)).join('');
+    const boxRow = row.map(value => makeBox(value)).join('');
+    boxes += `<div class=flexRow> ${boxRow} </div>`
   })
-  console.log(html);
-  return html;
+  return `<div class="flexColumn"> ${boxes} </div>`;
 }
 
 function makeBox(value) {
