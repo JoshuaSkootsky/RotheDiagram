@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Rothe Diagram Generator</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
-  </head>
-  <body>
-    <h1> Rothe Diagram Generator </h1>
 
-    <label for="rotheInput"> Input a sequence: </label>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Rothe Diagram Generator</title>
+	<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+	<h1> Rothe Diagram Generator </h1>
+
+	<label for="rotheInput"> Input a sequence: </label>
 		<input type="text" id="rInput" name="rInput" placeholder="Type here" autocomplete="off">
-    <p> This is the permutation being diagrammed:<div id="permutationDisplay"></div> Inversions are red squares</p>
+    <p> This is the permutation being diagrammed: </p>
+    <div id="permutationDisplay"></div>
+    <p> Inversions are red squares</p>
     <div id="diagram"></div>
     <script src="script.js"></script>
   </body>
