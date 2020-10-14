@@ -9,8 +9,8 @@ function rInputGetter() {
 }
 
 function stringToPermutation(string) {
+  // yes, 1 indexed. 0 is 10. a is 11.
   const mapping = {
-    0: 0,
     1: 1,
     2: 2,
     3: 3,
@@ -20,6 +20,7 @@ function stringToPermutation(string) {
     7: 7,
     8: 8,
     9: 9,
+    0: 10,
     a: 11,
     b: 12,
     c: 13,
@@ -59,6 +60,9 @@ function stringToPermutation(string) {
       permutation += char;
     }
   }
+  // every element now unique
+
+
   // display the spermutation being diagrammed
   setPermutationDisplay(permutation);
 
@@ -99,21 +103,23 @@ function makeGrid(n) {
 
 // given an array, make a roth diagram
 function fillGrid(array) {
-  const size = array.length;
+  const size = Math.max(...array);
   // have the size of the array to diagram
   const grid = makeGrid(size);
 
   for (let i = 0; i < size; i++) {
     for (let j = 0; j < size; j++) {
       // inversion
-      if (array[j] > array[i] && j < i) {
+      if (array[i] > array[j] && i < j) {
         grid[i][j] = 1;
-      }
-      if (i === j) {
-        grid[i][j] = 2;
       }
     }
   }
+  // remove empty rows
+  while (grid.length > array.length) {
+    grid.pop();
+  }
+
   return grid;
 }
 
@@ -128,11 +134,14 @@ function makeHTMLofGrid(grid, array) {
 
 function makeBox(value) {
   let color = "grey";
+  if (value === 1) {
+    color = "red";
+  }
   if (value === 2) {
     color = "black";
   }
-  if (value === 1) {
-    color = "red";
+  if (value === 3) {
+    color = "green";
   }
   return `<div class="${color} box"></div>`
 }

@@ -20,3 +20,11 @@ A permutation of a sequence has to make certain assumptions. For example, is `5`
 
 In addition, what is `a`? I am thinking that I should assign all lower case letters a number value. So `12djh7k` would be a valid sequence, and I'll be able to map out the inversions and make a Rothe diagram. If I was given `aaa12aaadjh7k` I'd take the first `a`, assign it a value, and then ignore the rest. Same with `111112543` - I'll take the first 1, ignore the others, and plot the rest of the sequence as if it was `12543`.
 
+Part of a Rothe diagram is the concept of position. If '5' is input, the board needs to be at least 5x5 to accomodate the input. This creates some difficulties. First of all, we're expecting that if there is a 5, the permutation has all numbers less than 5. Users may not always do that. Secondly, the position is indexed starting at 1, and it's usually convenient to represent a grid with an `n x n` array of 0 indexed arrays.
+
+I think if a user supplies an incomplete permutation, it could make sense to append at the end the continuation that would complete it. i.e. if `5` is input, then I should fill in: `5 4321` and draw the Rothe diagram of the sequence `54321`. But that seems wrong, what if the user inputs `634` and wants to see the Rothe diagram for that input?
+
+The size of the generated array will depend on the maximum value input, but this will leave parts of the diagram empty if the permutation does not go from `[max ... 1]`.
+
+
+
