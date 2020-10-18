@@ -26,5 +26,16 @@ I think if a user supplies an incomplete permutation, it could make sense to app
 
 The size of the generated array will depend on the maximum value input, but this will leave parts of the diagram empty if the permutation does not go from `[max ... 1]`.
 
+# New problems
 
+There are different definitions of Rothe diagrams. As of October 18, I've written some logic for how to interpret user strings as permutations, and the UI logic for displaying different colored boxes seems to be about right.
 
+However, the fundamental logic of how to transform a permutation into a Rothe diagram, a two dimensional grid, has not been written. One reason for this is a lack of agreement about what a Rothe diagram is. Another reason is my own lack of clarity or understanding. I am going to overcome those problems by defining the specification for what I am going to write, and then writing that.
+
+## Progress as of October 18, 2020
+
+- [x] Parse user input into a permutation
+- [ ] calculate Rothe diagram from permutation
+- [x] display calculated grid as a UI
+
+# Progress
